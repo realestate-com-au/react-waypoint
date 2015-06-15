@@ -15,7 +15,8 @@ var Waypoint = React.createClass({
     onLeave: PropTypes.func,
     // threshold is percentage of the height of the visible part of the
     // scrollable parent (e.g. 0.1)
-    threshold: PropTypes.number },
+    threshold: PropTypes.number
+  },
 
   _wasVisible: false,
 
@@ -26,18 +27,14 @@ var Waypoint = React.createClass({
     return {
       threshold: 0,
       onEnter: function onEnter() {},
-      onLeave: function onLeave() {} };
+      onLeave: function onLeave() {}
+    };
   },
 
   componentDidMount: function componentDidMount() {
     this.scrollableParent = this._findScrollableParent();
     this.scrollableParent.addEventListener('scroll', this._handleScroll);
     window.addEventListener('resize', this._handleScroll);
-    this._handleScroll();
-  },
-
-  componentDidUpdate: function componentDidUpdate() {
-    // The element may have moved.
     this._handleScroll();
   },
 
@@ -71,8 +68,8 @@ var Waypoint = React.createClass({
         continue;
       }
 
-      var _style = window.getComputedStyle(node);
-      var overflowY = _style.getPropertyValue('overflow-y') || _style.getPropertyValue('overflow');
+      var style = window.getComputedStyle(node);
+      var overflowY = style.getPropertyValue('overflow-y') || style.getPropertyValue('overflow');
 
       if (overflowY === 'auto' || overflowY === 'scroll') {
         return node;
